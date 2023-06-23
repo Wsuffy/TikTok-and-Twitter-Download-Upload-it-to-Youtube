@@ -14,7 +14,7 @@ To download a video, you can easily paste the video link into the application. I
 To upload videos to YouTube, you need to provide your YouTube account login and password, as well as the ***account ID in the format "channel/UC2YGn25vR2KbGO0hOimIWZQ" (where "UC2YGn25vR2KbGO0hOimIWZQ" is an example account ID)***. Please ensure that you have disabled ***two-factor authentication (2FA)*** for your YouTube account and set the language to English in your Google Account settings.
 If you have recently created your YouTube account, you may need to navigate through certain pop-ups such as enabling dark theme and dismissing welcome greetings specific to YouTube. The application will guide you through this process.
 
-# If You want to use this application
+# If You want to use this application ***(#EXE is for you)***
 1. just download EXE folder
 2. make sure you have Node.js installed
 3. install the playwright using the "npm init playwright@latest"
