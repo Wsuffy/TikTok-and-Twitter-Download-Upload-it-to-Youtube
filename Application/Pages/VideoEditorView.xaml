@@ -1,0 +1,23 @@
+﻿<Window x:Class="Application.Pages.VideoEditorView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:Application"
+      mc:Ignorable="d"
+      Title="Video Edditing Window by Deviate" Height="420" Width="300"
+      Background="Cornsilk">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="274"/>
+        </Grid.RowDefinitions>
+        <TextBox x:Name="TittleText" HorizontalAlignment="Left" Margin="21,33,0,0" VerticalAlignment="Top" Width="149" Height="28" />
+        <Label Content="Tittle" HorizontalAlignment="Left" Margin="21,2,0,0" VerticalAlignment="Top" Width="94"/>
+        <TextBox x:Name="DescriptionText" HorizontalAlignment="Left" Margin="21,99,0,0" VerticalAlignment="Top" Width="149" Height="50" Grid.RowSpan="2"/>
+        <Label Content="Description" HorizontalAlignment="Left" Margin="20,69,0,0" VerticalAlignment="Top" Width="94"/>
+        <CheckBox x:Name="PrivateVideo" Content="Private Video" HorizontalAlignment="Left" Margin="21,43,0,0" Grid.Row="1" VerticalAlignment="Top" Checked="PrivateVideo_Checked" />
+        <Button Content="Submit" HorizontalAlignment="Center" Margin="0,231,0,0" Grid.Row="1" VerticalAlignment="Top" Width="106" Click="Submit"/>
+        <Button Content="Back" HorizontalAlignment="Left" Margin="10,231,0,0" Grid.Row="1" VerticalAlignment="Top" Click="Close" Width="40"/>
+    </Grid>
+</Window>

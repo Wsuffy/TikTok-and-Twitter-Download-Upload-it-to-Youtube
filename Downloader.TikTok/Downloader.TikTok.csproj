@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <RootNamespace>Downloader.TikTok</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Downloader.Core\Downloader.Core.csproj" />
+      <ProjectReference Include="..\Uploader.Core\Uploader.Core.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.Playwright" Version="1.35.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="AppDownloader">
+        <HintPath>..\Application\bin\Debug\net6.0-windows\AppDownloader.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
+</Project>

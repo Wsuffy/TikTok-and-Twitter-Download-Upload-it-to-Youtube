@@ -1,0 +1,88 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33213.308
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "Application\Application.csproj", "{23B23E79-DE08-4C04-8D94-9E80B1E93AC3}"
+	ProjectSection(ProjectDependencies) = postProject
+		{04A7B0C0-AD9D-469F-A40F-E9FD70ADCF34} = {04A7B0C0-AD9D-469F-A40F-E9FD70ADCF34}
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Downloader.Core", "Downloader.Core\Downloader.Core.csproj", "{59FB858F-D152-4B61-BE96-2D1DCFBACEAD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Downloader.TikTok", "Downloader.TikTok\Downloader.TikTok.csproj", "{3FAA0572-213A-4ACE-AF95-6511086A0EC4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Downloader.Twitter", "Downloader.Twitter\Downloader.Twitter.csproj", "{DC5C3D8C-4423-479E-BBBE-35D423D58056}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Downloader", "Downloader", "{11052826-02D9-4AF3-8AA1-3BC6BF721C29}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Uploader", "Uploader", "{79008308-902D-4ABC-BEC8-1D05E755F1D8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Uploader.Core", "Uploader.Core\Uploader.Core.csproj", "{04A7B0C0-AD9D-469F-A40F-E9FD70ADCF34}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{B7AAF3F7-A557-4446-8116-9AA48F1A326D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Uploader.YouTubeApi", "Uploader.YouTubeApi\Uploader.YouTubeApi.csproj", "{B2DFF26A-73BF-44CC-BDB0-0B2E94D23F9B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "History.Core", "History.Core\History.Core.csproj", "{097E7010-8C8B-4E39-B0CB-E32928ADAF4E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "History", "History", "{297938CD-7E0D-4EC6-9B2A-13D45897419F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Uploader.Playwright.Youtube", "Uploader.Playwright.Youtube\Uploader.Playwright.Youtube.csproj", "{656CFF1F-8FD5-449F-A514-3FB1C0AF4083}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{23B23E79-DE08-4C04-8D94-9E80B1E93AC3}.Debug|Any CPU.ActiveCfg = Release|Any CPU
+		{23B23E79-DE08-4C04-8D94-9E80B1E93AC3}.Debug|Any CPU.Build.0 = Release|Any CPU
+		{23B23E79-DE08-4C04-8D94-9E80B1E93AC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23B23E79-DE08-4C04-8D94-9E80B1E93AC3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59FB858F-D152-4B61-BE96-2D1DCFBACEAD}.Debug|Any CPU.ActiveCfg = Release|Any CPU
+		{59FB858F-D152-4B61-BE96-2D1DCFBACEAD}.Debug|Any CPU.Build.0 = Release|Any CPU
+		{59FB858F-D152-4B61-BE96-2D1DCFBACEAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59FB858F-D152-4B61-BE96-2D1DCFBACEAD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3FAA0572-213A-4ACE-AF95-6511086A0EC4}.Debug|Any CPU.ActiveCfg = Release|Any CPU
+		{3FAA0572-213A-4ACE-AF95-6511086A0EC4}.Debug|Any CPU.Build.0 = Release|Any CPU
+		{3FAA0572-213A-4ACE-AF95-6511086A0EC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3FAA0572-213A-4ACE-AF95-6511086A0EC4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC5C3D8C-4423-479E-BBBE-35D423D58056}.Debug|Any CPU.ActiveCfg = Release|Any CPU
+		{DC5C3D8C-4423-479E-BBBE-35D423D58056}.Debug|Any CPU.Build.0 = Release|Any CPU
+		{DC5C3D8C-4423-479E-BBBE-35D423D58056}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC5C3D8C-4423-479E-BBBE-35D423D58056}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04A7B0C0-AD9D-469F-A40F-E9FD70ADCF34}.Debug|Any CPU.ActiveCfg = Release|Any CPU
+		{04A7B0C0-AD9D-469F-A40F-E9FD70ADCF34}.Debug|Any CPU.Build.0 = Release|Any CPU
+		{04A7B0C0-AD9D-469F-A40F-E9FD70ADCF34}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04A7B0C0-AD9D-469F-A40F-E9FD70ADCF34}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2DFF26A-73BF-44CC-BDB0-0B2E94D23F9B}.Debug|Any CPU.ActiveCfg = Release|Any CPU
+		{B2DFF26A-73BF-44CC-BDB0-0B2E94D23F9B}.Debug|Any CPU.Build.0 = Release|Any CPU
+		{B2DFF26A-73BF-44CC-BDB0-0B2E94D23F9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2DFF26A-73BF-44CC-BDB0-0B2E94D23F9B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{097E7010-8C8B-4E39-B0CB-E32928ADAF4E}.Debug|Any CPU.ActiveCfg = Release|Any CPU
+		{097E7010-8C8B-4E39-B0CB-E32928ADAF4E}.Debug|Any CPU.Build.0 = Release|Any CPU
+		{097E7010-8C8B-4E39-B0CB-E32928ADAF4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{097E7010-8C8B-4E39-B0CB-E32928ADAF4E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{656CFF1F-8FD5-449F-A514-3FB1C0AF4083}.Debug|Any CPU.ActiveCfg = Release|Any CPU
+		{656CFF1F-8FD5-449F-A514-3FB1C0AF4083}.Debug|Any CPU.Build.0 = Release|Any CPU
+		{656CFF1F-8FD5-449F-A514-3FB1C0AF4083}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{656CFF1F-8FD5-449F-A514-3FB1C0AF4083}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{59FB858F-D152-4B61-BE96-2D1DCFBACEAD} = {11052826-02D9-4AF3-8AA1-3BC6BF721C29}
+		{3FAA0572-213A-4ACE-AF95-6511086A0EC4} = {11052826-02D9-4AF3-8AA1-3BC6BF721C29}
+		{DC5C3D8C-4423-479E-BBBE-35D423D58056} = {11052826-02D9-4AF3-8AA1-3BC6BF721C29}
+		{04A7B0C0-AD9D-469F-A40F-E9FD70ADCF34} = {79008308-902D-4ABC-BEC8-1D05E755F1D8}
+		{B2DFF26A-73BF-44CC-BDB0-0B2E94D23F9B} = {79008308-902D-4ABC-BEC8-1D05E755F1D8}
+		{097E7010-8C8B-4E39-B0CB-E32928ADAF4E} = {297938CD-7E0D-4EC6-9B2A-13D45897419F}
+		{297938CD-7E0D-4EC6-9B2A-13D45897419F} = {B7AAF3F7-A557-4446-8116-9AA48F1A326D}
+		{656CFF1F-8FD5-449F-A514-3FB1C0AF4083} = {79008308-902D-4ABC-BEC8-1D05E755F1D8}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3124672F-8844-40D6-AEDD-5D09E3BC6C5A}
+	EndGlobalSection
+EndGlobal

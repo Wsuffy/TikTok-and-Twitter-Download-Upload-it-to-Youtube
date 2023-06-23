@@ -1,0 +1,50 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>WinExe</OutputType>
+        <TargetFramework>net6.0-windows</TargetFramework>
+        <Nullable>enable</Nullable>
+        <UseWPF>true</UseWPF>
+        <GenerateProgramFile>false</GenerateProgramFile>
+        <StartupObject>Application.Program</StartupObject>
+        <ApplicationIcon>Github-Octicons-Code-16.ico</ApplicationIcon>
+        <Title>TikTokDownloader</Title>
+        <PackageIcon></PackageIcon>
+        <NeutralLanguage>aa</NeutralLanguage>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Content Include="Github-Octicons-Code-16.ico" />
+    </ItemGroup>
+    
+
+
+    <ItemGroup>
+        <ProjectReference Include="..\Downloader.Core\Downloader.Core.csproj" />
+        <ProjectReference Include="..\Downloader.TikTok\Downloader.TikTok.csproj" />
+        <ProjectReference Include="..\Downloader.Twitter\Downloader.Twitter.csproj" />
+        <ProjectReference Include="..\History.Core\History.Core.csproj" />
+        <ProjectReference Include="..\Uploader.Playwright.Youtube\Uploader.Playwright.Youtube.csproj" />
+        <ProjectReference Include="..\Uploader.YouTubeApi\Uploader.YouTubeApi.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft-WindowsAPICodePack-Shell" Version="1.1.5" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
+        <PackageReference Include="Microsoft.Extensions.Hosting" Version="7.0.1" />
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Settings\" />
+      <Folder Include="Videos" />
+      <Folder Include="Windows" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="Windows\Main\MainWindowViewView.xaml.cs">
+        <DependentUpon>MainWindowView.xaml</DependentUpon>
+      </Compile>
+    </ItemGroup>
+
+</Project>
