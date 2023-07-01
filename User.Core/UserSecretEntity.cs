@@ -1,4 +1,4 @@
-﻿namespace Uploader.Core;
+﻿namespace User.Core;
 
 public class UserSecretEntity
 {

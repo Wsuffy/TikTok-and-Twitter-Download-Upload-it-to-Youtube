@@ -5,6 +5,7 @@ using Application.Pages.VideoEditor.Contracts;
 using Application.Windows.Main.Contracts;
 using Microsoft.WindowsAPICodePack.Dialogs;
 using Uploader.Core;
+using User.Core;
 
 namespace Application.Windows.Main
 {

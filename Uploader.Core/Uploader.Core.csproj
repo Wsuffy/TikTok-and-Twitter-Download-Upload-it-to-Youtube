@@ -4,16 +4,17 @@
         <TargetFramework>net6.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <AssemblyName>Uploader.Core</AssemblyName>
     </PropertyGroup>
-
-    <ItemGroup>
-      <PackageReference Include="Google.Apis.YouTube.v3" Version="1.60.0.3064" />
-    </ItemGroup>
 
     <ItemGroup>
       <Reference Include="AppDownloader">
         <HintPath>..\Application\bin\Debug\net6.0-windows\AppDownloader.dll</HintPath>
       </Reference>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Video.Core\Video.Core.csproj" />
     </ItemGroup>
 
 </Project>

@@ -1,7 +1,6 @@
-﻿using AppDownloader;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
-namespace Uploader.Core;
+namespace Video.Core;
 
 public static class VideoExtension
 {

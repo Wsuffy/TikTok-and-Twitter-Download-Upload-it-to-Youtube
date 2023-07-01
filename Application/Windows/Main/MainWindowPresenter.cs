@@ -6,6 +6,9 @@ using Application.Windows.Main.Contracts;
 using Downloader.Core;
 using Newtonsoft.Json;
 using Uploader.Core;
+using User.Core;
+using User.Core.Contracts;
+using Video.Core;
 
 namespace Application.Windows.Main;
 
@@ -14,14 +17,16 @@ public class MainWindowPresenter : IDisposable
     private readonly IMainWindowSignalBus _model;
     private readonly IVideoEditorModel _videoEditorModel;
     private readonly IVideoEditorSignalBus _videoEditorSignalBus;
+    private readonly IUserManager _userManager;
     private readonly DownloaderManager _downloaderManager;
 
-    public MainWindowPresenter(DownloaderManager downloaderManager, IMainWindowSignalBus model, IVideoEditorModel videoEditorModel, IVideoEditorSignalBus videoEditorSignalBus)
+    public MainWindowPresenter(DownloaderManager downloaderManager, IMainWindowSignalBus model, IVideoEditorModel videoEditorModel, IVideoEditorSignalBus videoEditorSignalBus, IUserManager userManager)
     {
         _downloaderManager = downloaderManager;
         _model = model;
         _videoEditorModel = videoEditorModel;
         _videoEditorSignalBus = videoEditorSignalBus;
+        _userManager = userManager;
 
         #region Subscribes
 
@@ -34,16 +39,15 @@ public class MainWindowPresenter : IDisposable
         #endregion
     }
 
-    private static void ChangePath(string currentPath)
+    private void ChangePath(string currentPath)
     {
         var json = JsonConvert.SerializeObject(currentPath);
         File.WriteAllText($"{Directory.GetCurrentDirectory()}/settings.json", json);
     }
 
-    private static void SetUserSecret(UserSecretEntity secretEntity)
+    private void SetUserSecret(UserSecretEntity secretEntity)
     {
-        var jsonString = JsonConvert.SerializeObject(secretEntity);
-        File.WriteAllText($"{Directory.GetCurrentDirectory()}/clientsecret.json", jsonString);
+        _userManager.Upload(secretEntity);
     }
 
     private async Task<string> DownloadTikTokAsync(string url)
