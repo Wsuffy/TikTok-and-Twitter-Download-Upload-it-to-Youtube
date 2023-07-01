@@ -7,7 +7,7 @@ This GitHub project is an application that simplifies the process of downloading
 Additionally, the application provides a loading history feature that logs the progress of your uploads in a JSON file, presenting it in a visually appealing manner for easy reference.
 Overall, this GitHub project aims to simplify the download of TikTok and Twitter videos and streamline the uploading process to YouTube, ensuring a seamless experience for users.
 
-# Download ***[(#EXE is for you)](https://disk.yandex.ru/d/xCUo1tVHvAIDPw)***
+# Download [EXE](https://disk.yandex.ru/d/xCUo1tVHvAIDPw)
 1. Just download EXE folder
 2. Make sure you have Node.js installed
 3. Install the playwright using the "npm init playwright@latest"
