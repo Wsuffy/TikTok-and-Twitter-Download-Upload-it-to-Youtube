@@ -10,6 +10,7 @@
     <ItemGroup>
       <ProjectReference Include="..\Downloader.Core\Downloader.Core.csproj" />
       <ProjectReference Include="..\Uploader.Core\Uploader.Core.csproj" />
+      <ProjectReference Include="..\Video.Core\Video.Core.csproj" />
     </ItemGroup>
 
     <ItemGroup>

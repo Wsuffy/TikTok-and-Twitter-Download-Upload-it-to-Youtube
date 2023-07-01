@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Application.Windows.Main.Contracts;
 using Uploader.Core;
+using User.Core;
 
 namespace Application.Windows.Main;
 

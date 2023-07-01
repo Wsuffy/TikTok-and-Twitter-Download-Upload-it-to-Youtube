@@ -2,6 +2,8 @@
 using System.Threading.Tasks;
 using Application.Pages.VideoEditor.Contracts;
 using Uploader.Core;
+using Uploader.Core.Contracts;
+using Video.Core;
 
 namespace Application.Pages.VideoEditor;
 

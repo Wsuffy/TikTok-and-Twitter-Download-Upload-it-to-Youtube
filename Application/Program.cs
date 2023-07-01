@@ -10,12 +10,15 @@ using Downloader.Core;
 using Downloader.TikTok;
 using Downloader.Twitter;
 using History.Core;
+using Login.Core;
+using Login.Gmail;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Uploader.Core;
+using Uploader.Core.Contracts;
 using Uploader.Playwright.Youtube;
-using Uploader.YouTube;
-
+using User.Core.Contracts;
+using User.Json;
 
 namespace Application;
 
@@ -35,7 +38,7 @@ public class Program : System.Windows.Application
                 services.AddSingleton<IMainWindowSignalBus>(s => s.GetRequiredService<MainWindowModel>());
                 services.AddSingleton<IMainWindowModel>(s => s.GetRequiredService<MainWindowModel>());
                 services.AddSingleton<MainWindowPresenter>();
-                
+
                 services.AddSingleton<VideoEditorView>();
                 services.AddSingleton<VideoEditorModel>();
                 services.AddSingleton<IVideoEditorModel>(s => s.GetRequiredService<VideoEditorModel>());
@@ -44,6 +47,7 @@ public class Program : System.Windows.Application
 
                 #endregion
 
+                services.AddSingleton<ILoginManager, LoginManager>();
                 services.AddSingleton<TikTokDownloader>();
                 services.AddSingleton<TwitterDownloader>();
                 services.AddSingleton<HistoryPool>();
@@ -53,7 +57,12 @@ public class Program : System.Windows.Application
                         x.GetRequiredService<HistoryPool>()));
                 services.AddSingleton<IUploader, PlaywrightUploader>();
                 services.AddSingleton<PlaywrightUploader>();
+
+                services.AddSingleton<IUserProvider, UserProvider>();
+                services.AddSingleton<IUserManager, UserManager>();
             });
+
+        #region FileController
 
         if (!File.Exists($"{Directory.GetCurrentDirectory()}/downloadedvideos.json"))
             File.Create($"{Directory.GetCurrentDirectory()}/downloadedvideos.json");
@@ -61,6 +70,9 @@ public class Program : System.Windows.Application
             File.Create($"{Directory.GetCurrentDirectory()}/settings.json");
         if (!File.Exists($"{Directory.GetCurrentDirectory()}/clientsecret.json"))
             File.Create($"{Directory.GetCurrentDirectory()}/clientsecret.json");
+
+        #endregion
+
         var build = host.Build();
         var app = build.Services.GetService<AppMain>();
 
@@ -70,9 +82,7 @@ public class Program : System.Windows.Application
         var videoEditorPresenter = build.Services.GetService<VideoEditorPresenter>();
 
         #endregion
-        /*build.Services.GetService<PlaywrightUploader>().Upload(VideoFactory.CreateVideo("Funny Video", "Decription Test", new []{"tag1,tag2,tag3,tag4"}, false,
-            false),@"D:\GitProjects\AppDownloader\Application\Videos\1.mp4");*/
+
         app?.Run();
-        
     }
 }

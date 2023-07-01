@@ -2,18 +2,18 @@ using System.Reflection;
 using Google.Apis.Auth.OAuth2;
 using Google.Apis.Services;
 using Google.Apis.Upload;
-using Google.Apis.Util.Store;
 using Google.Apis.YouTube.v3;
-using Google.Apis.YouTube.v3.Data;
-using Uploader.Core;
+using Uploader.Core.Contracts;
 
-namespace Uploader.YouTube
+namespace Uploader.YouTubeApi
 {
-    public class VideoUploader : IUploader
+    public class YoutubeUploader : IUploader
     {
         [Obsolete("Obsolete")]
-        public async Task Upload(Video videoInfo, string videoPath)
+        public async Task Upload(Video.Core.Entites.Video videoInfo, string videoPath)
         {
+            var video = VideoMapper.Map(videoInfo);
+            
             UserCredential credential;
             await using (var stream =
                          new FileStream($"{Directory.GetCurrentDirectory()}/clientsecret.json",
@@ -35,12 +35,13 @@ namespace Uploader.YouTube
 
             await using (var fileStream = new FileStream(videoPath, FileMode.Open))
             {
-                var videosInsertRequest = youtubeService.Videos.Insert(videoInfo,
+                var videosInsertRequest = youtubeService.Videos.Insert(video,
                     "snippet,status", fileStream, "video/*");
                 videosInsertRequest.ProgressChanged += videosInsertRequest_ProgressChanged;
                 videosInsertRequest.ResponseReceived += videosInsertRequest_ResponseReceived;
                 await videosInsertRequest.UploadAsync();
-                void videosInsertRequest_ProgressChanged(Google.Apis.Upload.IUploadProgress progress)
+                
+                void videosInsertRequest_ProgressChanged(IUploadProgress progress)
                 {
                     switch (progress.Status)
                     {
@@ -54,7 +55,7 @@ namespace Uploader.YouTube
                     }
                 }
 
-                void videosInsertRequest_ResponseReceived(Video video)
+                void videosInsertRequest_ResponseReceived(Google.Apis.YouTube.v3.Data.Video video)
                 {
                     Console.WriteLine("Video id '{0}' was successfully uploaded.", video.Id);
                 }
