@@ -6,6 +6,8 @@ using Application.Pages.VideoEditor;
 using Application.Pages.VideoEditor.Contracts;
 using Application.Windows.Main;
 using Application.Windows.Main.Contracts;
+using ConnectionPool.Core.Contracts;
+using ConnectionPool.Playwright;
 using Downloader.Core;
 using Downloader.TikTok;
 using Downloader.Twitter;
@@ -60,6 +62,9 @@ public class Program : System.Windows.Application
 
                 services.AddSingleton<IUserProvider, UserProvider>();
                 services.AddSingleton<IUserManager, UserManager>();
+
+                services.AddSingleton<IConnectionFactory, ConnectionFactory>();
+                services.AddSingleton<IConnectionPoolManager, ConnectionPoolManager>();
             });
 
         #region FileController

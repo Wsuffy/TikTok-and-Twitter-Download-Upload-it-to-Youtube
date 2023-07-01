@@ -27,7 +27,7 @@ public class VideoEditorPresenter : IDisposable
     private async Task Submit(string tittle, string description, bool isYouTubeShort, bool isPrivateVideo, string path)
     {
         var video = VideoFactory.CreateVideo(tittle, description, isPrivateVideo, isYouTubeShort);
-        await _uploader.Upload(video, path);
+        await _uploader.UploadAsync(video, path);
     }
 
     public void Dispose()

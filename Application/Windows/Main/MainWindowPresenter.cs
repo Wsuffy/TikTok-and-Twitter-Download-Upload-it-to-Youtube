@@ -5,7 +5,6 @@ using Application.Pages.VideoEditor.Contracts;
 using Application.Windows.Main.Contracts;
 using Downloader.Core;
 using Newtonsoft.Json;
-using Uploader.Core;
 using User.Core;
 using User.Core.Contracts;
 using Video.Core;
@@ -20,7 +19,8 @@ public class MainWindowPresenter : IDisposable
     private readonly IUserManager _userManager;
     private readonly DownloaderManager _downloaderManager;
 
-    public MainWindowPresenter(DownloaderManager downloaderManager, IMainWindowSignalBus model, IVideoEditorModel videoEditorModel, IVideoEditorSignalBus videoEditorSignalBus, IUserManager userManager)
+    public MainWindowPresenter(DownloaderManager downloaderManager, IMainWindowSignalBus model,
+        IVideoEditorModel videoEditorModel, IVideoEditorSignalBus videoEditorSignalBus, IUserManager userManager)
     {
         _downloaderManager = downloaderManager;
         _model = model;
@@ -45,21 +45,21 @@ public class MainWindowPresenter : IDisposable
         File.WriteAllText($"{Directory.GetCurrentDirectory()}/settings.json", json);
     }
 
-    private void SetUserSecret(UserSecretEntity secretEntity)
+    private async Task SetUserSecret(UserSecretEntity secretEntity)
     {
-        _userManager.Upload(secretEntity);
+        await _userManager.UploadAsync(secretEntity);
     }
 
     private async Task<string> DownloadTikTokAsync(string url)
     {
-        var id =  await _downloaderManager.Download(ResourceType.TikTok, url);
+        var id = await _downloaderManager.Download(ResourceType.TikTok, url);
         _videoEditorModel.SetVideoPath(VideoExtension.FindById(int.Parse(id))!);
         return id;
     }
 
     private async Task<string> DownloadTwitterAsync(string url)
     {
-        var id =  await _downloaderManager.Download(ResourceType.Twitter, url);
+        var id = await _downloaderManager.Download(ResourceType.Twitter, url);
         _videoEditorModel.SetVideoPath(VideoExtension.FindById(int.Parse(id))!);
         return id;
     }
@@ -68,7 +68,7 @@ public class MainWindowPresenter : IDisposable
     {
         _model.UserSecretChanged -= SetUserSecret;
         _model.SavePathChanged -= ChangePath;
-        
+
         _videoEditorSignalBus.DownloadTikTokEvent -= DownloadTikTokAsync;
         _videoEditorSignalBus.DownloadTwitterEvent -= DownloadTwitterAsync;
     }

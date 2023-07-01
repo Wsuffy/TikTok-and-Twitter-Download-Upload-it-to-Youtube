@@ -1,4 +1,5 @@
-﻿using Login.Core;
+﻿using ConnectionPool.Core.Contracts;
+using Login.Core;
 using Microsoft.Playwright;
 using Newtonsoft.Json;
 using Uploader.Core;
@@ -10,51 +11,42 @@ namespace Uploader.Playwright.Youtube;
 
 public class PlaywrightUploader : IUploader
 {
-    private readonly ILoginManager _loginManager;
     private readonly IUserProvider _userProvider;
+    private readonly IConnectionFactory _connectionFactory;
 
-    public PlaywrightUploader(ILoginManager loginManager, IUserProvider userProvider)
+    public PlaywrightUploader(IUserProvider userProvider, IConnectionFactory connectionFactory)
     {
-        _loginManager = loginManager;
         _userProvider = userProvider;
+        _connectionFactory = connectionFactory;
     }
 
-    public async Task Upload(Video.Core.Entites.Video videoInfo, string videoPath)
+    public async Task UploadAsync(Video.Core.Entites.Video videoInfo, string videoPath)
     {
-        const string youtubeMain = "https://www.youtube.com/";
         var secret = await _userProvider.ReadInfoAsync();
         var youtubeStudioUrl = $"https://studio.youtube.com/channel/{secret!.ShortUrl}/videos/upload";
         try
         {
-            // TODO Make Browser Connection Pool With Logined Account
-            using var playwright = await Microsoft.Playwright.Playwright.CreateAsync();
-            await using var browser = await playwright.Firefox.LaunchAsync();
-            var page = await browser.NewPageAsync();
-            await page.GotoAsync(youtubeMain,
+            using var connection = _connectionFactory.Create();
+            await connection.Page.GotoAsync(youtubeStudioUrl,
                 new PageGotoOptions() { WaitUntil = WaitUntilState.DOMContentLoaded, Timeout = 0 });
+            await connection.Page.Locator("//ytcp-button[@label='Create']").ClickAsync();
+            await connection.Page.GetByText("Upload videos").First.ClickAsync();
 
-            page = await _loginManager.LoginAsync(page, secret!.Login, secret!.Password);
-
-            await page.GotoAsync(youtubeStudioUrl,
-                new PageGotoOptions() { WaitUntil = WaitUntilState.DOMContentLoaded, Timeout = 0 });
-            await page.Locator("//ytcp-button[@label='Create']").ClickAsync();
-            await page.GetByText("Upload videos").First.ClickAsync();
-
-            var fileChooserPromise = page.WaitForFileChooserAsync();
-            await page.GetByText("Select files").ClickAsync();
+            var fileChooserPromise = connection.Page.WaitForFileChooserAsync();
+            await connection.Page.GetByText("Select files").ScrollIntoViewIfNeededAsync();
+            await connection.Page.GetByText("Select files").ClickAsync();
             var fileChooser = await fileChooserPromise;
             await fileChooser.SetFilesAsync(videoPath,
-                new FileChooserSetFilesOptions() { NoWaitAfter = false });
-            await Task.Delay(3000);
+                new FileChooserSetFilesOptions() { NoWaitAfter = false, Timeout = 6000 });
 
-            await UploadVideoInformationAsync(page, videoInfo);
+            await UploadVideoInformationAsync(connection.Page, videoInfo);
 
-            await page.Locator("//button[@id='step-badge-1']").ClickAsync();
-            await page.Locator("//button[@id='step-badge-2']").ClickAsync();
-            await page.Locator("//button[@id='step-badge-3']").ClickAsync();
-            await page.Locator("//tp-yt-paper-radio-button[@name='PUBLIC']").ScrollIntoViewIfNeededAsync();
-            await page.Locator("//tp-yt-paper-radio-button[@name='PUBLIC']").ClickAsync();
-            await page.Locator("//ytcp-button[@id='done-button']").ClickAsync();
+            await connection.Page.Locator("//button[@id='step-badge-1']").ClickAsync();
+            await connection.Page.Locator("//button[@id='step-badge-2']").ClickAsync();
+            await connection.Page.Locator("//button[@id='step-badge-3']").ClickAsync();
+            await connection.Page.Locator("//tp-yt-paper-radio-button[@name='PUBLIC']").ScrollIntoViewIfNeededAsync();
+            await connection.Page.Locator("//tp-yt-paper-radio-button[@name='PUBLIC']").ClickAsync();
+            await connection.Page.Locator("//ytcp-button[@id='done-button']").ClickAsync();
         }
         catch (Exception e)
         {
@@ -79,9 +71,9 @@ public class PlaywrightUploader : IUploader
             .FillAsync(videoInfo.Snippet.Description);
 
         await page.Locator("//tp-yt-paper-radio-button[@name='VIDEO_MADE_FOR_KIDS_MFK']")
-            .ScrollIntoViewIfNeededAsync(new LocatorScrollIntoViewIfNeededOptions() { Timeout = 6000 });
+            .ScrollIntoViewIfNeededAsync(new LocatorScrollIntoViewIfNeededOptions { Timeout = 0 });
         await page.Locator("//tp-yt-paper-radio-button[@name='VIDEO_MADE_FOR_KIDS_MFK']")
-            .ClickAsync(new LocatorClickOptions() { Timeout = 6000 });
+            .ClickAsync(new LocatorClickOptions() { Timeout = 0 });
 
 
         return page;

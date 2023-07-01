@@ -2,5 +2,5 @@
 
 public interface IUploader
 {
-    Task Upload(Video.Core.Entites.Video videoInfo, string videoPath);
+    Task UploadAsync(Video.Core.Entites.Video videoInfo, string videoPath);
 }

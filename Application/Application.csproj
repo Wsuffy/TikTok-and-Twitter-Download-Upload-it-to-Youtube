@@ -22,6 +22,7 @@
 
 
     <ItemGroup>
+        <ProjectReference Include="..\ConnectionPool.Playwright\ConnectionPool.Playwright.csproj" />
         <ProjectReference Include="..\Downloader.Core\Downloader.Core.csproj" />
         <ProjectReference Include="..\Downloader.TikTok\Downloader.TikTok.csproj" />
         <ProjectReference Include="..\Downloader.Twitter\Downloader.Twitter.csproj" />
