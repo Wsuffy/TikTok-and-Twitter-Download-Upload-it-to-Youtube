@@ -10,7 +10,7 @@ namespace Uploader.YouTubeApi
     public class YoutubeUploader : IUploader
     {
         [Obsolete("Obsolete")]
-        public async Task Upload(Video.Core.Entites.Video videoInfo, string videoPath)
+        public async Task UploadAsync(Video.Core.Entites.Video videoInfo, string videoPath)
         {
             var video = VideoMapper.Map(videoInfo);
             

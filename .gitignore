@@ -17,3 +17,5 @@ obj/
 /playwright/.cache/
 /.playwright/package/
 *.mp4
+
+*.md

@@ -9,7 +9,7 @@ namespace Application.Windows.Main;
 public class MainWindowModel : IMainWindowModel, IMainWindowSignalBus
 {
     public Action<string> SavePathChanged { get; set; }
-    public Action<UserSecretEntity> UserSecretChanged { get; set; }
+    public Func<UserSecretEntity, Task> UserSecretChanged { get; set; }
 
     public string CurrentSavePath
     {

@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using ConnectionPool.Core.Contracts;
+using Newtonsoft.Json;
 using User.Core;
 using User.Core.Contracts;
 
@@ -6,6 +7,13 @@ namespace User.Json;
 
 public class UserManager : IUserManager
 {
+    private readonly IConnectionPoolManager _poolManager;
+
+    public UserManager(IConnectionPoolManager poolManager)
+    {
+        _poolManager = poolManager;
+    }
+
     public void Upload(UserSecretEntity userSecretEntity)
     {
         var jsonString = JsonConvert.SerializeObject(userSecretEntity);
@@ -16,5 +24,6 @@ public class UserManager : IUserManager
     {
         var jsonString = JsonConvert.SerializeObject(userSecretEntity);
         await File.WriteAllTextAsync($"{Directory.GetCurrentDirectory()}/clientsecret.json", jsonString);
+        await _poolManager.CreateConnectionAsync(userSecretEntity.Login, userSecretEntity.Password);
     }
 }
